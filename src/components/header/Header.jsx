@@ -12,6 +12,7 @@ import {
   REMOVE_ACTIVE_USER,
   selectEmail,
 } from "../../redux/slice/authSlice";
+import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
 
 function Header() {
   const location = useLocation();
@@ -94,15 +95,17 @@ function Header() {
             >
               İletişim
             </NavLink>
-            <NavLink>
-              {userEmail || localStorage.getItem("email") ? (
-                <button className="bg-blue-500 ml-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                  Admin
-                </button>
-              ) : (
-                ""
-              )}
-            </NavLink>
+            <AdminOnlyLink>
+              <Link to="/admin/home">
+                {userEmail || localStorage.getItem("email") ? (
+                  <button className="bg-blue-500 ml-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Admin Panel
+                  </button>
+                ) : (
+                  ""
+                )}
+              </Link>
+            </AdminOnlyLink>
           </div>
           <div className=" flex items-center ">
             {localStorage.getItem("login") && (

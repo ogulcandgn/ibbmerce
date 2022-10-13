@@ -8,15 +8,10 @@ import { selectEmail } from "../../redux/slice/authSlice";
 function Home() {
   const email = useSelector(selectEmail);
 
-  useEffect(() => {
-    console.log("ey Oğul", email);
-  }, []);
-
   return (
     <div>
       <Slider />
       <Product />
-      <AdminOnlyRoute />
     </div>
   );
 }

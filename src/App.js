@@ -5,17 +5,18 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 //pages
-import { Home, Contact, Login, Register, Reset } from "./pages";
+import { Home, Contact, Login, Register, Reset, Admin } from "./pages";
 //components
 import { Header, Footer } from "./components";
 import OrderHistory from "./pages/orderHistory/OrderHistory";
 import { selectEmail } from "./redux/slice/authSlice";
+import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 
 function App() {
   const email = useSelector(selectEmail);
 
   useEffect(() => {
-    console.log("ey Oğul", email);
+    console.log(email);
   }, []);
 
   return (
@@ -30,6 +31,14 @@ function App() {
           <Route path="/reset" element={<Reset />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-history" element={<OrderHistory />} />
+          <Route
+            path="/admin/*"
+            element={
+              <AdminOnlyRoute>
+                <Admin />
+              </AdminOnlyRoute>
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>
