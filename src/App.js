@@ -15,10 +15,6 @@ import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 function App() {
   const email = useSelector(selectEmail);
 
-  useEffect(() => {
-    console.log(email);
-  }, []);
-
   return (
     <>
       <BrowserRouter>
