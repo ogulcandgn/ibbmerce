@@ -16,49 +16,29 @@ import { db, storage } from "../../../firebase/config";
 import Loader from "../../loader/Loader";
 import styles from "./ViewProducts.module.scss";
 import Notiflix from "notiflix";
-import { useDispatch } from "react-redux";
-import { STORE_PRODUCT } from "../../../redux/slice/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectProducts,
+  STORE_PRODUCT,
+} from "../../../redux/slice/productSlice";
+import UseFetchCollection from "../../../customHooks/UseFetchCollection";
 
 const ViewProducts = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { data, isLoading } = UseFetchCollection("products");
+  const products = useSelector(selectProducts);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getProducts();
-  }, []);
-
-  //collection product infos to firebase
-  const getProducts = () => {
-    setIsLoading(true);
-
-    try {
-      const productsRef = collection(db, "products");
-      const q = query(productsRef, orderBy("createdAt", "desc"));
-
-      onSnapshot(q, (snapshot) => {
-        // console.log(snapshot.docs);
-        const allProducts = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log(allProducts);
-        setProducts(allProducts);
-        setIsLoading(false);
-        dispatch(
-          STORE_PRODUCT({
-            products: allProducts,
-          })
-        );
-      });
-    } catch {
-      setIsLoading(false);
-      toast.error("Ürün eklenemedi");
-    }
-  };
+    dispatch(
+      STORE_PRODUCT({
+        products: data,
+      })
+    );
+  }, [dispatch, data]);
 
   //confirm delete before delete product
+
   const confirmDelete = (id, imageURL) => {
     Notiflix.Confirm.show(
       "Ürünü silmek istiyor musunuz ?",

@@ -108,7 +108,7 @@ function Header() {
             </AdminOnlyLink>
           </div>
           <div className=" flex items-center ">
-            {localStorage.getItem("login") && (
+            {/* {localStorage.getItem("login") && (
               <div className="flex bg-green-600 items-center font-normal block px-5 py-3 ml-5 rounded  text-white  ">
                 <FaUserCircle
                   style={{
@@ -119,7 +119,7 @@ function Header() {
                 />
                 {displayName}
               </div>
-            )}
+            )} */}
 
             {!localStorage.getItem("login") && (
               <>

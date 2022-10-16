@@ -1,7 +1,7 @@
 import React from "react";
 
 const Orders = () => {
-  return <div></div>;
+  return <div>Siparişler</div>;
 };
 
 export default Orders;
