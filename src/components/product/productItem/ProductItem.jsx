@@ -22,7 +22,7 @@ function ProductItem({ product, grid, id, name, price, desc, imageURL }) {
 
   return (
     <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
-      <div className="w-full rounded-lg shadow-xl my-8">
+      <div className="w-full rounded-lg shadow-xl">
         <Link to={`/product-details/${id}`}>
           <img
             className="border-b-2 pb-4 "

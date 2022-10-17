@@ -22,6 +22,12 @@ function Cart() {
   const cartTotalAmount = useSelector(selectCartTotalAmount);
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
 
+  //money formatter (TRY 1,000,000)
+  const formatter = new Intl.NumberFormat("tr-TR", {
+    style: "currency",
+    currency: "TRY",
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -123,7 +129,7 @@ function Cart() {
                   <th>Fiyat</th>
                   <th>Miktar</th>
                   <th>Toplam</th>
-                  <th>Action</th>
+                  <th>Temizle</th>
                 </tr>
               </thead>
               <tbody>
@@ -180,7 +186,7 @@ function Cart() {
               >
                 Sepeti Temizle
               </button>
-              <div className={styles.checkout}>
+              <div className={`${styles.checkout} border-4 p-4`}>
                 <div>
                   <Link to="/#products">&larr; Alışverişe devam et</Link>
                 </div>
@@ -191,7 +197,7 @@ function Cart() {
                   </p>
                   <div className={styles.text}>
                     <h4>Toplam tutar:</h4>
-                    <h3>{`${cartTotalAmount.toFixed(2)} TL`}</h3>
+                    <h3>{formatter.format(cartTotalAmount)}</h3>
                   </div>
                   <p className="mb-3">Tax an shipping calculated at checkout</p>
                   <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
