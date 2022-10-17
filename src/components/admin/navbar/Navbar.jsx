@@ -53,7 +53,7 @@ const Navbar = () => {
                 fontWeight: isActive ? "bold" : "",
               })}
             >
-              Siparişler
+              Siparişlerim
             </NavLink>
           </li>
         </ul>

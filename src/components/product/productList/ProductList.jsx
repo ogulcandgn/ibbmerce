@@ -6,10 +6,24 @@ import { FaListAlt } from "react-icons/fa";
 import Search from "../../search/Search";
 import { Link } from "react-router-dom";
 import ProductItem from "../productItem/ProductItem";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  FILTER_BY_SEARCH,
+  selectFilteredProducts,
+} from "../../../redux/slice/filterSlice";
 
 function ProductList({ products }) {
   const [grid, setGrid] = useState(true);
   const [search, setSearch] = useState("");
+  const filteredProducts = useSelector(selectFilteredProducts);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(search);
+    dispatch(FILTER_BY_SEARCH({ products, search }));
+  }, [dispatch, products, search]);
 
   return (
     <div className={styles["product-list"]} id="product">
@@ -44,7 +58,7 @@ function ProductList({ products }) {
           <p>Ürün bulunamadı.</p>
         ) : (
           <>
-            {products.map((product) => {
+            {filteredProducts.map((product) => {
               return (
                 <div key={product.id} className="my-9">
                   <ProductItem {...product} grid={grid} product={product} />

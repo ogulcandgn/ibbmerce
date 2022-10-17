@@ -11,6 +11,7 @@ import { Header, Footer } from "./components";
 import OrderHistory from "./pages/orderHistory/OrderHistory";
 import { selectEmail } from "./redux/slice/authSlice";
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
+import ProductDetails from "./components/product/productDetails/ProductDetails";
 
 function App() {
   const email = useSelector(selectEmail);
@@ -35,6 +36,7 @@ function App() {
               </AdminOnlyRoute>
             }
           />
+          <Route path="/product-details/:id" element={<ProductDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

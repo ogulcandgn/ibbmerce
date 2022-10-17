@@ -6,11 +6,24 @@ import { useSelector } from "react-redux";
 import { selectEmail } from "../../redux/slice/authSlice";
 
 function Home() {
-  const email = useSelector(selectEmail);
+  const url = window.location.href;
+
+  useEffect(() => {
+    const scrollToProducts = () => {
+      if (url.includes("#products")) {
+        window.scrollTo({
+          top: 700,
+          behavior: "smooth",
+        });
+        return;
+      }
+    };
+    scrollToProducts();
+  }, [url]);
 
   return (
     <div>
-      {/* <Slider /> */}
+      <Slider />
       <Product />
     </div>
   );

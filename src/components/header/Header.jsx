@@ -108,18 +108,16 @@ function Header() {
             </AdminOnlyLink>
           </div>
           <div className=" flex items-center ">
-            {/* {localStorage.getItem("login") && (
-              <div className="flex bg-green-600 items-center font-normal block px-5 py-3 ml-5 rounded  text-white  ">
+            {localStorage.getItem("login") && (
+              <div className="text-black items-center font-normal block py-3 ml-5 rounded">
                 <FaUserCircle
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    marginRight: "7px",
+                    width: "25px",
+                    height: "25px",
                   }}
                 />
-                {displayName}
               </div>
-            )} */}
+            )}
 
             {!localStorage.getItem("login") && (
               <>
@@ -147,7 +145,7 @@ function Header() {
             )}
             <NavLink
               to="/order-history"
-              className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent text-black md:p-0 "
+              className="font-normal block py-2 pr-4 pl-3 ml-2 rounded md:bg-transparent text-black md:p-0 "
               style={({ isActive }) => ({
                 fontWeight: isActive ? "bold" : "",
                 borderBottom: isActive ? "2px solid black" : "",

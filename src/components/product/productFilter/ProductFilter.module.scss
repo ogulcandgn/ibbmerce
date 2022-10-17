@@ -1,13 +1,14 @@
 .filter {
   h4 {
     margin-top: 1rem;
+    font-size: 1.3rem;
   }
   .category button {
     display: block;
     text-align: left;
     width: 80%;
     height: 3rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -17,9 +18,9 @@
 
   .brand {
     select {
-      font-size: 1.6rem;
+      font-size: 1rem;
       font-weight: 300;
-      padding: 5px;
+      padding: 3px;
 
       width: 80%;
       border: 1px solid #777;
@@ -40,20 +41,4 @@
       }
     }
   }
-}
-
-.active {
-  position: relative;
-  // margin-bottom: 2px;
-  padding-left: 1rem;
-}
-
-.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 2px;
-  height: 100%;
-  background-color: var(--color-danger);
 }

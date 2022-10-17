@@ -15,7 +15,11 @@ function ProductItem({ product, grid, id, name, price, desc, imageURL }) {
     <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
       <div className="w-full rounded-lg shadow-xl my-8">
         <Link to={`/product-details/${id}`}>
-          <img className="border-b-2 pb-4" src={imageURL} alt="product image" />
+          <img
+            className="border-b-2 pb-4 "
+            src={imageURL}
+            alt="product image"
+          />
         </Link>
         <div className="px-5 mt-2 pb-5 text-center">
           <span className="text-md font-bold text-blue-700">{`${price} TL`}</span>
