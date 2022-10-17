@@ -155,7 +155,7 @@ function Header() {
             </NavLink>
 
             <NavLink
-              to="card"
+              to="/cart"
               className="relative flex font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent text-black md:p-0 "
               style={({ isActive }) => ({
                 fontWeight: isActive ? "bold" : "",

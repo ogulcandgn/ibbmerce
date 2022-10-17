@@ -12,6 +12,7 @@ import OrderHistory from "./pages/orderHistory/OrderHistory";
 import { selectEmail } from "./redux/slice/authSlice";
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 import ProductDetails from "./components/product/productDetails/ProductDetails";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   const email = useSelector(selectEmail);
@@ -37,6 +38,7 @@ function App() {
             }
           />
           <Route path="/product-details/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>
