@@ -6,14 +6,41 @@ import { toast } from "react-toastify";
 import { db } from "../../../firebase/config";
 import styles from "./ProductDetails.module.scss";
 import SpinnerImage from "../../../assets/spinner.jpeg";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  ADD_TO_CART,
+  CALCULATE_TOTAL_QUANTITY,
+  DECREASE_CART,
+  selectCartItems,
+} from "../../../redux/slice/cartSlice";
+import Cart from "../../../pages/cart/Cart";
 
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+
+  const cart = cartItems.find((cart) => cart.id === id);
+
+  const isCartAdded = cartItems.findIndex((cart) => {
+    return cart.id === id;
+  });
+
   useEffect(() => {
     getProduct();
   }, []);
+
+  const addToCart = (product) => {
+    dispatch(ADD_TO_CART(product));
+    dispatch(CALCULATE_TOTAL_QUANTITY(product));
+  };
+
+  const decreaseCart = (product) => {
+    dispatch(DECREASE_CART(product));
+    dispatch(CALCULATE_TOTAL_QUANTITY(product));
+  };
 
   const getProduct = async () => {
     const docRef = doc(db, "products", id);
@@ -61,15 +88,29 @@ function ProductDetails() {
                   <b>Marka:</b> {product.brand}
                 </p>
                 <div className={styles.count}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
-                    -
-                  </button>
-                  <p>1</p>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
-                    +
-                  </button>
+                  {isCartAdded < 0 ? null : (
+                    <>
+                      <button
+                        onClick={() => decreaseCart(product)}
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+                      >
+                        -
+                      </button>
+                      {/* sepetteki ürün miktarı */}
+                      <p>{cart.cartQuantity}</p>
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+                      >
+                        +
+                      </button>
+                    </>
+                  )}
                 </div>
-                <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                <button
+                  onClick={() => addToCart(product)}
+                  className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 mt-3 rounded"
+                >
                   Sepete Ekle
                 </button>
               </div>

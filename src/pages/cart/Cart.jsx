@@ -118,7 +118,7 @@ function Cart() {
           </>
         ) : (
           <>
-            <div className=" text-3xl text-center  p-2 text-black">
+            <div className=" text-3xl text-center p-1 text-black">
               Sipariş Özeti
             </div>
             <table className="mt-10">

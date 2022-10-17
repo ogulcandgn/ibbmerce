@@ -13,14 +13,26 @@ import {
   selectEmail,
 } from "../../redux/slice/authSlice";
 import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
+import {
+  CALCULATE_TOTAL_QUANTITY,
+  selectCartTotalQuantity,
+} from "../../redux/slice/cartSlice";
 
 function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
+  const [scrollPage, setScrollPage] = useState(false);
   const dispatch = useDispatch();
   const userEmail = useSelector(selectEmail);
+
+  //sepetin üzerindeki toplam ürün sayısı
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+
+  useEffect(() => {
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  }, []);
 
   //oturum açan kullanıcıyı görüntüleme
   useEffect(() => {
@@ -172,7 +184,7 @@ function Header() {
                 }}
               />
               <span className="inline-flex absolute -top-3.5 -right-3.5 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900">
-                0
+                {cartTotalQuantity}
               </span>
             </NavLink>
             {localStorage.getItem("login") && (

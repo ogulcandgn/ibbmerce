@@ -73,7 +73,7 @@ const cartSlice = createSlice({
     },
     CLEAR_CART(state, action) {
       state.cartItems = [];
-      toast.info(`Cart cleared`, {
+      toast.info(`Sepet boşaltıldı`, {
         position: "top-left",
       });
 
