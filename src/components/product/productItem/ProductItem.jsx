@@ -26,17 +26,18 @@ function ProductItem({ product, grid, id, name, price, desc, imageURL }) {
 
   return (
     <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
-      <div className="w-full rounded-lg shadow-xl">
+      <div style={{ height: "22rem" }} className="w-full rounded-lg shadow-xl">
         <Link to={`/product-details/${id}`}>
           <img
-            className="border-b-2 pb-4 "
+            style={{ height: "13rem" }}
+            className="border-b-2 pb-4"
             src={imageURL}
             alt="product image"
           />
         </Link>
         <div className="px-5 mt-2 pb-5 text-center">
           <span className="text-md font-bold text-blue-700">{`${price} TL`}</span>
-          <h5 className="text-3xl tracking-tight text-gray-900 mb-4">
+          <h5 className="text-2xl tracking-tight text-gray-900 mb-4">
             {shortenText(name, 18)}
           </h5>
           <button
