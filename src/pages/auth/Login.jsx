@@ -6,8 +6,9 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
 import { auth } from "../../firebase/config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SET_ACTIVE_USER } from "../../redux/slice/authSlice";
+import { selectPreviousURL } from "../../redux/slice/cartSlice";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,17 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const previousURL = useSelector(selectPreviousURL);
+
   const navigate = useNavigate();
+
+  //girilen url de cart key'i varsa /cart'a routerlayacak
+  const redirectUser = () => {
+    if (previousURL.includes("cart")) {
+      return navigate("/cart");
+    }
+    navigate("/");
+  };
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -28,8 +39,7 @@ export const Login = () => {
         localStorage.setItem("login", true);
         localStorage.setItem("email", email);
         toast.success("Giriş Başarılı");
-        navigate("/");
-
+        redirectUser();
         dispatch(
           SET_ACTIVE_USER({
             email: userCredential.user.email,

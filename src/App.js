@@ -13,6 +13,7 @@ import { selectEmail } from "./redux/slice/authSlice";
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 import ProductDetails from "./components/product/productDetails/ProductDetails";
 import Cart from "./pages/cart/Cart";
+import CheckoutDetails from "./pages/checkout/CheckoutDetails";
 
 function App() {
   const email = useSelector(selectEmail);
@@ -39,6 +40,7 @@ function App() {
           />
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout-details" element={<CheckoutDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

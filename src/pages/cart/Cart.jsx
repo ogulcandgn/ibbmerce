@@ -7,6 +7,7 @@ import {
   CLEAR_CART,
   CALCULATE_SUBTOTAL,
   CALCULATE_TOTAL_QUANTITY,
+  SAVE_URL,
   selectCartItems,
   selectCartTotalAmount,
   selectCartTotalQuantity,
@@ -16,11 +17,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import Notiflix from "notiflix";
 import Card from "../../components/card/Card";
+import { selectIsLoggedIn } from "../../redux/slice/authSlice";
 
 function Cart() {
   const cartItems = useSelector(selectCartItems);
   const cartTotalAmount = useSelector(selectCartTotalAmount);
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   //money formatter (TRY 1,000,000)
   const formatter = new Intl.NumberFormat("tr-TR", {
@@ -81,7 +84,22 @@ function Cart() {
   useEffect(() => {
     dispatch(CALCULATE_SUBTOTAL());
     dispatch(CALCULATE_TOTAL_QUANTITY());
+    dispatch(SAVE_URL());
   }, [cartItems, dispatch]);
+
+  //login olmadan sepete ürün eklendiğinde ve satın alınmak istenildiğinde
+  //login ekranına yönlendirmesi ve loginden sonra checkout edilmesi
+
+  const url = window.location.href;
+
+  const checkout = () => {
+    if (isLoggedIn) {
+      navigate("/checkout-details");
+    } else {
+      dispatch(SAVE_URL(url));
+      navigate("/login");
+    }
+  };
 
   //increase product
   const increaseCart = (cart) => {
@@ -118,7 +136,7 @@ function Cart() {
           </>
         ) : (
           <>
-            <div className=" text-3xl text-center p-1 text-black">
+            <div className=" text-3xl text-center mt-10 p-1 text-black">
               Sipariş Özeti
             </div>
             <table className="mt-10">
@@ -200,7 +218,10 @@ function Cart() {
                     <h3>{formatter.format(cartTotalAmount)}</h3>
                   </div>
                   <p className="mb-3">Tax an shipping calculated at checkout</p>
-                  <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
+                  <button
+                    onClick={checkout}
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"
+                  >
                     Ödeme Yap
                   </button>
                 </Card>
