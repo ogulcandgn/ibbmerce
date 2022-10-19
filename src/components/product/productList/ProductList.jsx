@@ -36,7 +36,7 @@ function ProductList({ products }) {
           />
           <FaListAlt size={24} color="#0066d4" onClick={() => setGrid(false)} />
           <p>
-            <b>10</b> Ürün bulundu.
+            <b>{filteredProducts.length}</b> Ürün bulundu.
           </p>
         </div>
         {/* Search Icon */}
@@ -53,14 +53,14 @@ function ProductList({ products }) {
           </select>
         </div>
       </div>
-      <div className={grid ? `${styles.grid}` : `${styles.list}`}>
+      <div className={`${grid ? `${styles.grid}` : `${styles.list}`} my-2`}>
         {products.lenght === 0 ? (
           <p>Ürün bulunamadı.</p>
         ) : (
           <>
             {filteredProducts.map((product) => {
               return (
-                <div key={product.id} className="my-9">
+                <div key={product.id}>
                   <ProductItem {...product} grid={grid} product={product} />
                 </div>
               );

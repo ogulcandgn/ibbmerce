@@ -135,7 +135,7 @@ function Header() {
               <>
                 <NavLink
                   to="/login"
-                  className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent text-black md:p-0 "
+                  className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
                   style={({ isActive }) => ({
                     fontWeight: isActive ? "bold" : "",
                     borderBottom: isActive ? "2px solid black" : "",
@@ -145,7 +145,7 @@ function Header() {
                 </NavLink>
                 <NavLink
                   to="/register"
-                  className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent text-black md:p-0 "
+                  className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
                   style={({ isActive }) => ({
                     fontWeight: isActive ? "bold" : "",
                     borderBottom: isActive ? "2px solid black" : "",
@@ -157,7 +157,7 @@ function Header() {
             )}
             <NavLink
               to="/order-history"
-              className="font-normal block py-2 pr-4 pl-3 ml-2 rounded md:bg-transparent text-black md:p-0 "
+              className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
               style={({ isActive }) => ({
                 fontWeight: isActive ? "bold" : "",
                 borderBottom: isActive ? "2px solid black" : "",
@@ -168,7 +168,7 @@ function Header() {
 
             <NavLink
               to="/cart"
-              className="relative flex font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent text-black md:p-0 "
+              className="relative flex font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
               style={({ isActive }) => ({
                 fontWeight: isActive ? "bold" : "",
                 borderBottom: isActive ? "2px solid black" : "",

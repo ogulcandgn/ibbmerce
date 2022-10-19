@@ -18,13 +18,11 @@ export const Login = () => {
   const previousURL = location.state?.currentUrl;
   const navigate = useNavigate();
 
-  //ro
   const redirectUser = () => {
     if (true) {
-      navigate("/checkout-details");
+      navigate("/");
       return;
     }
-    navigate("/");
   };
 
   const loginUser = (e) => {
