@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useParams } from "react-router-dom";
 import {
   ADD_TO_CART,
   DECREASE_CART,
@@ -13,7 +14,7 @@ import {
   selectCartTotalQuantity,
 } from "../../redux/slice/cartSlice";
 import styles from "./Cart.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import Notiflix from "notiflix";
 import Card from "../../components/card/Card";
@@ -24,15 +25,17 @@ function Cart() {
   const cartTotalAmount = useSelector(selectCartTotalAmount);
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const checkoutPath = isLoggedIn ? "/checkout-details" : "/login";
+
+  const currentUrl = location.pathname;
 
   //money formatter (TRY 1,000,000)
   const formatter = new Intl.NumberFormat("tr-TR", {
     style: "currency",
     currency: "TRY",
   });
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   //delete product
   const confirmDelete = (cart) => {
@@ -84,22 +87,10 @@ function Cart() {
   useEffect(() => {
     dispatch(CALCULATE_SUBTOTAL());
     dispatch(CALCULATE_TOTAL_QUANTITY());
-    dispatch(SAVE_URL());
   }, [cartItems, dispatch]);
 
   //login olmadan sepete ürün eklendiğinde ve satın alınmak istenildiğinde
   //login ekranına yönlendirmesi ve loginden sonra checkout edilmesi
-
-  const url = window.location.href;
-
-  const checkout = () => {
-    if (isLoggedIn) {
-      navigate("/checkout-details");
-    } else {
-      dispatch(SAVE_URL(url));
-      navigate("/login");
-    }
-  };
 
   //increase product
   const increaseCart = (cart) => {
@@ -218,12 +209,14 @@ function Cart() {
                     <h3>{formatter.format(cartTotalAmount)}</h3>
                   </div>
                   <p className="mb-3">Tax an shipping calculated at checkout</p>
-                  <button
-                    onClick={checkout}
+
+                  <Link
+                    to={checkoutPath}
+                    state={{ currentUrl }}
                     className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"
                   >
                     Ödeme Yap
-                  </button>
+                  </Link>
                 </Card>
               </div>
             </div>

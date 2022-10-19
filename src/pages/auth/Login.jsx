@@ -1,30 +1,28 @@
 import React from "react";
 import loginImage from "../../assets/login.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
 import { auth } from "../../firebase/config";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SET_ACTIVE_USER } from "../../redux/slice/authSlice";
-import { selectPreviousURL } from "../../redux/slice/cartSlice";
 
 export const Login = () => {
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const previousURL = useSelector(selectPreviousURL);
-
+  const previousURL = location.state?.currentUrl;
   const navigate = useNavigate();
 
-  //girilen url de cart key'i varsa /cart'a routerlayacak
+  //ro
   const redirectUser = () => {
-    if (previousURL.includes("cart")) {
-      return navigate("/cart");
+    if (true) {
+      navigate("/checkout-details");
+      return;
     }
     navigate("/");
   };
@@ -35,16 +33,16 @@ export const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setIsLoading(false);
         localStorage.setItem("login", true);
         localStorage.setItem("email", email);
         toast.success("Giriş Başarılı");
-        redirectUser();
+        setIsLoading(false);
         dispatch(
           SET_ACTIVE_USER({
             email: userCredential.user.email,
           })
         );
+        redirectUser(previousURL);
       })
       .catch((error) => {
         setIsLoading(false);

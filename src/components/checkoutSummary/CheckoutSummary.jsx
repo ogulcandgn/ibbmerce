@@ -14,6 +14,11 @@ function CheckoutSummary() {
   const cartTotalAmount = useSelector(selectCartTotalAmount);
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
 
+  const formatter = new Intl.NumberFormat("tr-TR", {
+    style: "currency",
+    currency: "TRY",
+  });
+
   return (
     <div>
       <span className="text-xl border-b-2">Ödeme Özeti</span>
@@ -31,7 +36,9 @@ function CheckoutSummary() {
           </p>
           <div className={styles.text}>
             <h4>Toplam Tutar:</h4>
-            <h3>{cartTotalAmount.toFixed(2)}₺</h3>
+            <h3 className="text-green-600">
+              {formatter.format(cartTotalAmount)}
+            </h3>
           </div>
           {cartItems.map((item, index) => {
             const { id, name, price, cartQuantity } = item;
@@ -39,7 +46,7 @@ function CheckoutSummary() {
               <Card key={id} cardClass={`${styles.card}`}>
                 <h4>Ürün Adı: {name}</h4>
                 <p>Adet: {cartQuantity}</p>
-                <p>Birim Fiyatı: {price}</p>
+                <p>Birim Fiyatı: {price}₺</p>
                 <p>
                   <b>Toplam Fiyatı:</b> {price * cartQuantity}₺
                 </p>
