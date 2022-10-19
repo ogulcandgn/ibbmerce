@@ -4,21 +4,26 @@ import styles from "./ProductList.module.scss";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListAlt } from "react-icons/fa";
 import Search from "../../search/Search";
-import { Link } from "react-router-dom";
 import ProductItem from "../productItem/ProductItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FILTER_BY_SEARCH,
   selectFilteredProducts,
+  SORT_PRODUCT,
 } from "../../../redux/slice/filterSlice";
 
 function ProductList({ products }) {
   const [grid, setGrid] = useState(true);
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("latest");
   const filteredProducts = useSelector(selectFilteredProducts);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(SORT_PRODUCT({ products, sort }));
+  }, [dispatch, products, sort]);
 
   useEffect(() => {
     // console.log(search);
@@ -46,10 +51,12 @@ function ProductList({ products }) {
         {/* Sort Products */}
         <div className={styles.sort}>
           <label>Sırala:</label>
-          <select>
+          <select value={sort} onChange={(e) => setSort(e.target.value)}>
             <option value="latest">En son eklenen</option>
             <option value="lowest-price">Düşük fiyat</option>
             <option value="highest-price">Yüksek fiyat</option>
+            <option value="a-z">A - Z</option>
+            <option value="z-a">Z - A</option>
           </select>
         </div>
       </div>
