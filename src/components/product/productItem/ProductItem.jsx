@@ -29,8 +29,12 @@ function ProductItem({ product, grid, id, name, price, desc, imageURL }) {
       <div style={{ height: "22rem" }} className="w-full rounded-lg shadow-xl">
         <Link to={`/product-details/${id}`}>
           <img
-            style={{ height: "13rem" }}
-            className="border-b-2 pb-4"
+            style={{
+              height: "13rem",
+              maxWidth: "100%",
+              maxHeight: "100%",
+            }}
+            className="pb-4 mx-auto"
             src={imageURL}
             alt="product image"
           />
