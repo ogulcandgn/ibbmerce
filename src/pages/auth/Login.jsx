@@ -35,6 +35,7 @@ export const Login = () => {
         localStorage.setItem("email", email);
         toast.success("Giriş Başarılı");
         setIsLoading(false);
+        console.log("auth:", auth);
         dispatch(
           SET_ACTIVE_USER({
             email: userCredential.user.email,
