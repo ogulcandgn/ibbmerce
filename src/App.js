@@ -1,9 +1,7 @@
-import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSelector } from "react-redux";
 //pages
 import { Home, Contact, Login, Register, Reset, Admin } from "./pages";
 //components
@@ -17,8 +15,6 @@ import CheckoutDetails from "./pages/checkout/CheckoutDetails";
 import NotFound from "./pages/notFound/NotFound";
 
 function App() {
-  const email = useSelector(selectEmail);
-
   return (
     <>
       <BrowserRouter>

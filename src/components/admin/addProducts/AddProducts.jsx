@@ -27,7 +27,7 @@ const AddProducts = () => {
   //product info
   const [product, setProduct] = useState({ ...initialState });
 
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
