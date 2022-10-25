@@ -1,4 +1,4 @@
-import { addDoc, collection, Timestamp, doc } from "firebase/firestore";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -72,7 +72,7 @@ const AddProducts = () => {
     setIsLoading(true);
 
     try {
-      const docRef = addDoc(collection(db, "products"), {
+      addDoc(collection(db, "products"), {
         name: product.name,
         imageURL: product.imageUrl,
         price: Number(product.price),
