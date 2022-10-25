@@ -1,14 +1,6 @@
-import {
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-} from "@firebase/firestore";
+import { deleteDoc, doc } from "@firebase/firestore";
 import { deleteObject, ref } from "@firebase/storage";
 import { useEffect } from "react";
-import { useState } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";

@@ -7,7 +7,6 @@ import { Home, Contact, Login, Register, Reset, Admin } from "./pages";
 //components
 import { Header, Footer } from "./components";
 import OrderHistory from "./pages/orderHistory/OrderHistory";
-import { selectEmail } from "./redux/slice/authSlice";
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 import ProductDetails from "./components/product/productDetails/ProductDetails";
 import Cart from "./pages/cart/Cart";

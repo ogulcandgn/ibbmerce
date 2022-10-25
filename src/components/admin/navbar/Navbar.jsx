@@ -3,10 +3,9 @@ import { BiUserCircle } from "react-icons/bi";
 import styles from "./Navbar.module.scss";
 import { useSelector } from "react-redux";
 import { selectUserName } from "../../../redux/slice/authSlice";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const location = useLocation();
   const userName = useSelector(selectUserName);
   return (
     <div className={styles.navbar}>

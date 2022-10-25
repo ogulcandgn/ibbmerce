@@ -13,7 +13,6 @@ import {
   DECREASE_CART,
   selectCartItems,
 } from "../../../redux/slice/cartSlice";
-import Cart from "../../../pages/cart/Cart";
 
 function ProductDetails() {
   const { id } = useParams();

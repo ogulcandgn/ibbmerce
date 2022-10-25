@@ -22,8 +22,7 @@ function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
-  const [scrollPage, setScrollPage] = useState(false);
+  const [setEmail] = useState("");
   const dispatch = useDispatch();
   const userEmail = useSelector(selectEmail);
 
