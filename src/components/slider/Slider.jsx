@@ -58,8 +58,8 @@ function Slider() {
           >
             {index === currentSlide && (
               <>
-                <img src={image} style={{ opacity: ".9" }} alt="slide" />
-                <div className="content">
+                <img src={image} style={{ opacity: ".8" }} alt="slide" />
+                {/* <div className="content">
                   <h2>{heading}</h2>
                   <p>{desc}</p>
                   <hr />
@@ -69,7 +69,7 @@ function Slider() {
                   >
                     Alışverişe Başla
                   </a>
-                </div>
+                </div> */}
               </>
             )}
           </div>

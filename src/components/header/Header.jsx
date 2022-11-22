@@ -217,16 +217,38 @@ function Header() {
       </nav> */}
 
       {/* ********************** */}
-      <nav className="md:flex justify-between items-center bg-white ">
+      <nav className="md:flex justify-around items-center bg-white md:py-5 p-2">
         <div className="flex items-center justify-between">
-          <Link to="/">
+          <Link className="flex" to="/">
             <img
               style={{ width: "60px", height: "60px" }}
               src={logo}
               alt="logo"
               className="w-12 h-12 p-2"
             />
+            <span class="self-center text-lg font-mono whitespace-nowrap ">
+              Shop
+            </span>
           </Link>
+
+          <div className="md:hidden">
+            <NavLink
+              to="/cart"
+              className="relative flex font-normal block  rounded md:bg-transparent"
+            >
+              <AiOutlineShoppingCart
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  position: "relative",
+                }}
+              />
+              <span className="inline-flex absolute -top-3.5 -right-3.5 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900">
+                {cartTotalQuantity}
+              </span>
+            </NavLink>
+          </div>
+
           {showNav ? (
             <HiOutlineMenuAlt2
               onClick={() => setShowNav(!showNav)}
@@ -248,24 +270,14 @@ function Header() {
         >
           <NavLink
             to="/"
-            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent text-black md:p-0 "
+            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent  md:p-0 "
             style={({ isActive }) => ({
               fontWeight: isActive && location.pathname === "/" ? "bold" : "",
               borderBottom:
-                isActive && location.pathname === "/" ? "2px solid black" : "",
+                isActive && location.pathname === "/" ? "2px solid white" : "",
             })}
           >
             Anasayfa
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent text-black md:p-0 "
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid black" : "",
-            })}
-          >
-            İletişim
           </NavLink>
           <AdminOnlyLink>
             <Link to="/admin/home">
@@ -292,20 +304,20 @@ function Header() {
             <>
               <NavLink
                 to="/login"
-                className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
+                className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent  md:p-0 "
                 style={({ isActive }) => ({
                   fontWeight: isActive ? "bold" : "",
-                  borderBottom: isActive ? "2px solid black" : "",
+                  borderBottom: isActive ? "2px solid white" : "",
                 })}
               >
                 Giriş
               </NavLink>
               <NavLink
                 to="/register"
-                className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
+                className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent  md:p-0 "
                 style={({ isActive }) => ({
                   fontWeight: isActive ? "bold" : "",
-                  borderBottom: isActive ? "2px solid black" : "",
+                  borderBottom: isActive ? "2px solid white" : "",
                 })}
               >
                 Kayıt Ol
@@ -314,21 +326,31 @@ function Header() {
           )}
           <NavLink
             to="/order-history"
-            className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
+            className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent  md:p-0 "
             style={({ isActive }) => ({
               fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid black" : "",
+              borderBottom: isActive ? "2px solid white" : "",
             })}
           >
             Siparişlerim
           </NavLink>
+          <NavLink
+            to="/contact"
+            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent  md:p-0 "
+            style={({ isActive }) => ({
+              fontWeight: isActive ? "bold" : "",
+              borderBottom: isActive ? "2px solid white" : "",
+            })}
+          >
+            İletişim
+          </NavLink>
 
           <NavLink
             to="/cart"
-            className="relative flex font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent text-black md:p-0 "
+            className="relative flex font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent  md:p-0 "
             style={({ isActive }) => ({
               fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid black" : "",
+              borderBottom: isActive ? "2px solid white" : "",
             })}
           >
             Sepetim
