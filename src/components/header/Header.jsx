@@ -28,13 +28,28 @@ function Header() {
   const dispatch = useDispatch();
   const userEmail = useSelector(selectEmail);
   const [showNav, setShowNav] = useState(false);
+  const [width, setWidth] = useState(getWindowSize());
 
   //sepetin üzerindeki toplam ürün sayısı
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
 
   useEffect(() => {
     dispatch(CALCULATE_TOTAL_QUANTITY());
+    function handleWindowResize() {
+      setWidth(getWindowSize());
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
+
+  function getWindowSize() {
+    const { innerWidth } = window;
+    return innerWidth;
+  }
 
   //oturum açan kullanıcıyı görüntüleme
   useEffect(() => {
@@ -268,17 +283,6 @@ function Header() {
             " md:static fixed bottom-0 top-12 md:flex md:space-x-7 items-center md:bg-transparent bg-gray-500 bg-opacity-90 md:w-auto w-10/12 md:text-gray-500 text-white md:space-y-0 space-y-5 p-2 transition-left h-auto"
           }
         >
-          <NavLink
-            to="/"
-            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent  md:p-0 "
-            style={({ isActive }) => ({
-              fontWeight: isActive && location.pathname === "/" ? "bold" : "",
-              borderBottom:
-                isActive && location.pathname === "/" ? "2px solid white" : "",
-            })}
-          >
-            Anasayfa
-          </NavLink>
           <AdminOnlyLink>
             <Link to="/admin/home">
               {userEmail || localStorage.getItem("email") ? (
@@ -290,6 +294,17 @@ function Header() {
               )}
             </Link>
           </AdminOnlyLink>
+          <NavLink
+            to="/"
+            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent  md:p-0 "
+            style={({ isActive }) => ({
+              fontWeight: isActive && location.pathname === "/" ? "bold" : "",
+              borderBottom:
+                isActive && location.pathname === "/" ? "2px solid white" : "",
+            })}
+          >
+            Anasayfa
+          </NavLink>
           {localStorage.getItem("login") && (
             <div className="text-black items-center font-normal block py-3 ml-5 rounded">
               <FaUserCircle
@@ -348,12 +363,17 @@ function Header() {
           <NavLink
             to="/cart"
             className="relative flex font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent  md:p-0 "
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid white" : "",
-            })}
+            style={
+              (({ isActive }) => ({
+                fontWeight: isActive ? "bold" : "",
+                borderBottom: isActive ? "2px solid white" : "",
+              }),
+              width < 600
+                ? { visibility: "hidden" }
+                : { visibility: "visible" })
+            }
           >
-            Sepetim
+            <span>Sepetim</span>
             <AiOutlineShoppingCart
               style={{
                 width: "25px",

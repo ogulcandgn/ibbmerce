@@ -32,7 +32,7 @@ function ProductList({ products }) {
   }, [dispatch, products, search]);
 
   return (
-    <div className={styles["product-list"]} id="product">
+    <div className={`${styles["product-list"]} px-3`} id="product">
       <div className={styles.top}>
         <div className={styles.icons}>
           <BsFillGridFill

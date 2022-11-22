@@ -57,7 +57,7 @@ function Product() {
           ) : (
             <ProductList products={products} />
           )}
-          <div className={styles.icon} onClick={togleFilter}>
+          <div className={`${styles.icon} px-3`} onClick={togleFilter}>
             <FaCogs size={20} color="orangered" />
             <p>
               <b>{showFilter ? "Filtrelemeyi Kapat" : "Filtrelemeyi Aç"}</b>
