@@ -54,18 +54,16 @@ export const Login = () => {
       {isLoading && <Loader />}
       <div className="flex justify-center items-center w-full">
         {/* login image */}
-        <div>
+        <div className="hidden md:block">
           <img src={loginImage} width="500" />
         </div>
         {/* login page */}
-
-        <div
-          style={{ marginTop: "10rem", marginBottom: "10rem" }}
-          className="bg-grey-lighter flex flex-col w-6/12"
-        >
-          <div className="container max-w-md mx-auto flex-1 flex flex-col justify-center items-center px-2">
+        <div className="bg-grey-lighter my-10 flex w-full md:w-7/12 md:flex-col max-w-md mx-5 md:my-40">
+          <div className="container flex-1 flex flex-col justify-center items-center px-2">
             <div className="bg-white px-6 py-8 rounded shadow-lg text-black w-full">
-              <h1 className="mb-8 text-3xl text-center">Oturum Aç</h1>
+              <h1 className="mb-8 text-2xl md:text-3xl text-center">
+                Oturum Aç
+              </h1>
 
               <form onSubmit={loginUser}>
                 <input

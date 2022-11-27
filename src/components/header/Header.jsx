@@ -280,8 +280,9 @@ function Header() {
         <ul
           className={
             (showNav ? "left-0" : "-left-full") +
-            " md:static fixed bottom-0 top-12 md:flex md:space-x-7 items-center md:bg-transparent bg-gray-500 bg-opacity-90 md:w-auto w-10/12 md:text-gray-500 text-white md:space-y-0 space-y-5 p-2 transition-left h-auto"
+            " md:static fixed bottom-0 md:flex md:space-x-7 items-center md:bg-transparent bg-gray-500 bg-opacity-90 md:w-auto w-10/12 md:text-gray-500 text-white md:space-y-0 space-y-5 p-2 transition-left h-auto"
           }
+          style={{ top: "4.7rem" }}
         >
           <AdminOnlyLink>
             <Link to="/admin/home">
@@ -296,7 +297,7 @@ function Header() {
           </AdminOnlyLink>
           <NavLink
             to="/"
-            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent  md:p-0 "
+            className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent md:p-0"
             style={({ isActive }) => ({
               fontWeight: isActive && location.pathname === "/" ? "bold" : "",
               borderBottom:
@@ -341,7 +342,7 @@ function Header() {
           )}
           <NavLink
             to="/order-history"
-            className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent  md:p-0 "
+            className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent md:p-0"
             style={({ isActive }) => ({
               fontWeight: isActive ? "bold" : "",
               borderBottom: isActive ? "2px solid white" : "",
@@ -351,7 +352,7 @@ function Header() {
           </NavLink>
           <NavLink
             to="/contact"
-            className="font-normal block py-2 pr-4 pl-3 ml-5 rounded md:bg-transparent  md:p-0 "
+            className="font-normal block py-2 pr-4 pl-3 ml-3 rounded md:bg-transparent md:p-0"
             style={({ isActive }) => ({
               fontWeight: isActive ? "bold" : "",
               borderBottom: isActive ? "2px solid white" : "",
