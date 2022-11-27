@@ -42,75 +42,73 @@ function Register() {
   return (
     <>
       {isLoading && <Loader />}
-      <div>
-        <div className="flex justify-center items-center w-full">
-          {/* register page */}
-          <div className="bg-grey-lighter my-10 flex w-full md:w-7/12 md:flex-col mx-5 md:my-40">
-            <div className="container max-w-md mx-auto flex-1 flex flex-col justify-center items-center px-2">
-              <div className="bg-white px-6 py-8 rounded shadow-lg text-black w-full">
-                <h1 className="mb-8 text-2xl md:text-3xl text-center">
-                  Hesap Oluştur
-                </h1>
+      <div className="flex justify-center items-center w-full">
+        {/* register page */}
+        <div className="bg-grey-lighter my-10 flex w-full md:w-7/12 md:flex-col max-w-md mx-5 md:my-40">
+          <div className="container max-w-md mx-auto flex-1 flex flex-col justify-center items-center px-2">
+            <div className="bg-white px-6 py-8 rounded shadow-lg text-black w-full">
+              <h1 className="mb-8 text-2xl md:text-3xl text-center">
+                Hesap Oluştur
+              </h1>
 
-                <form onSubmit={registerUser}>
-                  <input
-                    type="email"
-                    className="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="email"
-                    placeholder="E-mail"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+              <form onSubmit={registerUser}>
+                <input
+                  type="email"
+                  className="block border border-grey-light w-full p-3 rounded mb-4"
+                  name="email"
+                  placeholder="E-mail"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
 
-                  <input
-                    type="password"
-                    className="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="password"
-                    placeholder="Şifreniz"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                <input
+                  type="password"
+                  className="block border border-grey-light w-full p-3 rounded mb-4"
+                  name="password"
+                  placeholder="Şifreniz"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
 
-                  <input
-                    type="password"
-                    className="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="cPassword"
-                    placeholder="Şifre Tekrar"
-                    required
-                    value={cPassword}
-                    onChange={(e) => setCPassword(e.target.value)}
-                  />
+                <input
+                  type="password"
+                  className="block border border-grey-light w-full p-3 rounded mb-4"
+                  name="cPassword"
+                  placeholder="Şifre Tekrar"
+                  required
+                  value={cPassword}
+                  onChange={(e) => setCPassword(e.target.value)}
+                />
 
-                  <button
-                    type="submit"
-                    className="w-full text-center py-3 rounded bg-green-500 hover:bg-green-400  text-white focus:outline-none my-1"
-                  >
-                    Kayıt Ol
-                  </button>
-                </form>
-              </div>
+                <button
+                  type="submit"
+                  className="w-full text-center py-3 rounded bg-green-500 hover:bg-green-400  text-white focus:outline-none my-1"
+                >
+                  Kayıt Ol
+                </button>
+              </form>
+            </div>
 
-              <div>
-                <div className="text-grey-dark mt-6">
-                  <p className="mb-0 mt-2 pt-1">
-                    Zaten hesabınız var mı ?
-                    <Link to="/login">
-                      <span className=" cursor-pointer ml-1 text-blue-500 border-b-2 font-bold">
-                        Giriş Yap
-                      </span>
-                    </Link>
-                  </p>
-                </div>
+            <div>
+              <div className="text-grey-dark mt-6">
+                <p className="mb-0 mt-2 pt-1">
+                  Zaten hesabınız var mı ?
+                  <Link to="/login">
+                    <span className=" cursor-pointer ml-1 text-blue-500 border-b-2 font-bold">
+                      Giriş Yap
+                    </span>
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* image image */}
-          <div className="hidden md:block">
-            <img src={registerImage} width="500" />
-          </div>
+        {/* register image */}
+        <div className="hidden md:block">
+          <img src={registerImage} width="500" />
         </div>
       </div>
     </>

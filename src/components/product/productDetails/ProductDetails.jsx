@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db } from "../../../firebase/config";
-import styles from "./ProductDetails.module.scss";
 import SpinnerImage from "../../../assets/spinner.jpeg";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -58,24 +57,37 @@ function ProductDetails() {
 
   return (
     <section>
-      <div className={`container mx-auto my-5 ${styles.product}`}>
-        <h2 className="text-3xl">Ürün Bilgileri</h2>
-        <div className="mt-2">
-          <Link to="/#products">&larr; Ürünlere geri dön</Link>
+      <div className="container mx-auto my-5">
+        <div className="ml-3">
+          <h2 className="text-3xl">Ürün Bilgileri</h2>
+          <div className="mt-2">
+            <Link to="/#products">&larr; Ürünlere geri dön</Link>
+          </div>
         </div>
         {product == null ? (
-          <img src={SpinnerImage} alt="Loading" style={{ width: "50px" }} />
+          <div>
+            <img
+              className="container mx-auto"
+              src={SpinnerImage}
+              alt="Loading"
+              style={{ width: "50px" }}
+            />
+          </div>
         ) : (
           <>
-            <div className={`${styles.details}`}>
-              <div className={`${styles.img} flex items-center`}>
-                <img src={product.imageURL} alt={product.name} />
+            <div className="md:flex p-4 details">
+              <div className="border rounded p-5 w-full">
+                <img
+                  src={product.imageURL}
+                  alt={product.name}
+                  className="w-full h-full "
+                />
               </div>
-              <div className={`${styles.content} ml-5`}>
+              <div className="py-0 px-1.5">
                 <h3>
                   <span className="font-bold">Ürün Adı:</span> {product.name}
                 </h3>
-                <p className={styles.price}>
+                <p style={{ color: "orangered", fontWeight: "500" }}>
                   <span className="font-bold text-black">Fiyat: </span>
                   {`${product.price} TL`}
                 </p>
@@ -86,12 +98,12 @@ function ProductDetails() {
                 <p>
                   <b>Marka:</b> {product.brand}
                 </p>
-                <div className={styles.count}>
+                <div className="flex items-center mr-4">
                   {isCartAdded < 0 ? null : (
                     <>
                       <button
                         onClick={() => decreaseCart(product)}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold mr-3 py-1 px-3 rounded"
                       >
                         -
                       </button>
@@ -99,7 +111,7 @@ function ProductDetails() {
                       <p>{cart.cartQuantity}</p>
                       <button
                         onClick={() => addToCart(product)}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded ml-3"
                       >
                         +
                       </button>
